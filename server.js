@@ -16,8 +16,20 @@ const db = knex({
 
 const app = express();
 
-app.use(cors())
-app.use(bodyParser.json());
+/*
+Note: middleware config
+ ? What is cors used for?
+      - Access-Control-Allow Origin header
+      - We are trying to communicate with outside world using HTTP
+      - This is why previously FE we add a proxy
+         - We are on localhost: trying to communicate with outside world
+ * bodyParser.json() - allows to send raw JSON() in postman and req.body is acessible
+ * bodyParser.extended({urlencoded:false}) = url-encoded postman requests
+*/
+
+
+app.use(cors()) // ? What is cors used for?
+app.use(bodyParser.json()); 
 
 app.get('/', (req, res)=> {
   res.send(database.users);
